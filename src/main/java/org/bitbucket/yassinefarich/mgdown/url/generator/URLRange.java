@@ -1,6 +1,6 @@
 package org.bitbucket.yassinefarich.mgdown.url.generator;
 
-import org.apache.commons.lang3.StringUtils;
+import com.google.common.base.Strings;
 
 import java.util.function.IntConsumer;
 import java.util.regex.Pattern;
@@ -34,8 +34,6 @@ public class URLRange {
     }
 
     public String setMyDigitsNumberTo(Integer number) {
-
-        return StringUtils.leftPad(String.valueOf(number), numberOfDigits,
-                "0");
+        return Strings.padStart(String.valueOf(number), numberOfDigits, '0');
     }
 }

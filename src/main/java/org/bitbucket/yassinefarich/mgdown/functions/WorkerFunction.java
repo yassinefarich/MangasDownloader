@@ -1,5 +1,6 @@
 package org.bitbucket.yassinefarich.mgdown.functions;
 
+import org.bitbucket.yassinefarich.mgdown.functions.impl.downloadfunction.DownloadFunction;
 import org.bitbucket.yassinefarich.mgdown.url.MangaPage;
 
 /**

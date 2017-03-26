@@ -1,9 +1,8 @@
 package org.bitbucket.yassinefarich.mgdown.url.generator;
 
 import com.google.common.base.Preconditions;
-import com.google.common.collect.Collections2;
+import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
-import org.apache.commons.lang3.StringUtils;
 import org.bitbucket.yassinefarich.mgdown.url.MangaPage;
 import org.springframework.util.CollectionUtils;
 
@@ -27,7 +26,7 @@ public class SequencedStringsGenerator {
     }
 
     public SequencedStringsGenerator withUrlWithNumericIdentifiers(String urlWithNumericIdentifiers) {
-        Preconditions.checkArgument(!StringUtils.isEmpty(urlWithNumericIdentifiers));
+        Preconditions.checkArgument(!Strings.isNullOrEmpty(urlWithNumericIdentifiers));
 
         this.urlWithNumericIdentifiers = urlWithNumericIdentifiers;
         return this;

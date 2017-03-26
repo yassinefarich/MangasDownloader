@@ -2,9 +2,9 @@ package org.bitbucket.yassinefarich.mgdown.url.generator;
 
 import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
+import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.primitives.Ints;
-import org.apache.commons.lang3.StringUtils;
 import org.bitbucket.yassinefarich.mgdown.url.MangaPage;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public class URLsGenerator {
 
 
     public List<MangaPage> generateUrlsFromExpression(String urlIncludingExpressions) {
-        Preconditions.checkArgument(StringUtils.isNoneEmpty(urlIncludingExpressions));
+        Preconditions.checkArgument(!Strings.isNullOrEmpty(urlIncludingExpressions));
 
         List<URLRange> ranges = extractRanges(urlIncludingExpressions);
         String urlWithNumericIdentifiers = replaceRangesWithNumericIdentifier(ranges, urlIncludingExpressions);

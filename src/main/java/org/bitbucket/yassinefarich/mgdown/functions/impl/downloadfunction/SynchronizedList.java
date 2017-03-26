@@ -1,4 +1,4 @@
-package org.bitbucket.yassinefarich.mgdown.functions.impl;
+package org.bitbucket.yassinefarich.mgdown.functions.impl.downloadfunction;
 
 import java.util.Collections;
 import java.util.LinkedList;

@@ -22,10 +22,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="MangasDownloader" />
         <module name="mgdown" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="MangasDownloader" target="1.8" />
       <module name="mgdown" target="1.8" />
     </bytecodeTargetLevel>
   </component>

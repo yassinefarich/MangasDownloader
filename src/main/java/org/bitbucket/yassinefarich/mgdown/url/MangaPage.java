@@ -8,6 +8,23 @@ import java.util.List;
 public class MangaPage {
 
     private List<Integer> chaptersPageSequnce;
+
+    public String getPageUrl() {
+        return pageUrl;
+    }
+
+    public void setPageUrl(String pageUrl) {
+        this.pageUrl = pageUrl;
+    }
+
+    public List<Integer> getChaptersPageSequnce() {
+        return chaptersPageSequnce;
+    }
+
+    public void setChaptersPageSequnce(List<Integer> chaptersPageSequnce) {
+        this.chaptersPageSequnce = chaptersPageSequnce;
+    }
+
     private String pageUrl;
 
 
@@ -15,7 +32,6 @@ public class MangaPage {
         this.chaptersPageSequnce = chaptersPageSequnce;
         this.pageUrl = pageUrl;
     }
-
 
     @Override
     public String toString() {
