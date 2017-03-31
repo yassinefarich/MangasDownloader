@@ -1,7 +1,9 @@
 # README 
 Simple command line java batch to download Mangas from various websites .
 ### Requirment 
-* Java 1.8
+
+    - Java 1.8
+
 ### How to run 
 
 1. Create a new configuration file according to the webSite ( *see example below* )
