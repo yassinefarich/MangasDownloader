@@ -8,7 +8,7 @@ import org.junit.Test;
  */
 public class URLsGeneratorTest {
 
-    private static final String TEST_STRING = "http://www.lirescan.net_[1:3|1]/aiki-s-lecture-en-ligne/[1:3|1]/[1:30|1]";
+    private static final String TEST_STRING = "http://www.lirescan.net_[1:3|1]/aiki-s-lecture-en-ligne/[1:3|1]/[1:30|2]";
 
     @Test
     public void generateUrlsFromExpression() throws Exception {

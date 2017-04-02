@@ -1,22 +1,19 @@
 package com.yfarich.mangasdownloader;
 
+import com.google.common.base.Preconditions;
+import com.google.inject.Guice;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
 import com.yfarich.mangasdownloader.functions.impl.downloadfunction.DownloadFunction;
 import com.yfarich.mangasdownloader.shared.ApplicationConfiguration;
 import com.yfarich.mangasdownloader.shared.RunningParameters;
 import com.yfarich.mangasdownloader.thread.WorkersPoll;
 import com.yfarich.mangasdownloader.url.MangaPage;
 import com.yfarich.mangasdownloader.url.generator.URLsGenerator;
-import com.google.common.base.Preconditions;
-import com.google.inject.Guice;
-import com.google.inject.Inject;
-import com.google.inject.Injector;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import java.util.List;
-
-import static com.yfarich.mangasdownloader.shared.Constants.DOWNLOAD_URL;
-import static com.yfarich.mangasdownloader.shared.Constants.NUMBER_OF_THREADS;
 
 public class AppStarter {
 
@@ -33,12 +30,12 @@ public class AppStarter {
 
     public static void main(final String[] args) {
 
-        Preconditions.checkArgument(args.length > 0,"You need to specify an Running parameters File ");
+        Preconditions.checkArgument(args.length > 0, "You need to specify a Running parameters File ");
         Injector injector = Guice.createInjector(new AppModule().withRunningParametersFile(args[0]));
         AppStarter application = injector.getInstance(AppStarter.class);
         application.startProcessing();
 
-      //  new AppStarter().startProcessing();
+        //  new AppStarter().startProcessing();
     }
 
     public void startProcessing() {
@@ -60,11 +57,11 @@ public class AppStarter {
     }
 
     private String getNumberOfThreads() {
-        return applicationConfiguration.getProperty(NUMBER_OF_THREADS).get();
+        return applicationConfiguration.getProperty(ApplicationConfiguration.NUMBER_OF_THREADS).get();
     }
 
     private String getDownloadUrl() {
-        return runningParameters.getProperty(DOWNLOAD_URL).get();
+        return runningParameters.getProperty(RunningParameters.DOWNLOAD_URL).get();
     }
 
 }

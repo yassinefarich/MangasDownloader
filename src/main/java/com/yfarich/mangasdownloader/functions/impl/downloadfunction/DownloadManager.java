@@ -5,11 +5,11 @@ import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 import com.google.common.io.Files;
 import com.google.inject.Inject;
+import com.yfarich.mangasdownloader.shared.RunningParameters;
+import com.yfarich.mangasdownloader.url.MangaPage;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import com.yfarich.mangasdownloader.shared.RunningParameters;
-import com.yfarich.mangasdownloader.url.MangaPage;
 import org.htmlcleaner.HtmlCleaner;
 import org.htmlcleaner.TagNode;
 import org.htmlcleaner.XPatherException;
@@ -21,6 +21,9 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLDecoder;
 import java.util.List;
+
+import static com.yfarich.mangasdownloader.functions.impl.downloadfunction.Constants.*;
+import static com.yfarich.mangasdownloader.shared.Constants.*;
 
 public class DownloadManager {
 

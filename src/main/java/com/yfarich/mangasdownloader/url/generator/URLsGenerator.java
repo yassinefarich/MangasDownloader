@@ -10,6 +10,7 @@ import com.yfarich.mangasdownloader.url.MangaPage;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import static com.yfarich.mangasdownloader.shared.Constants.*;
 
 public class URLsGenerator {
 
