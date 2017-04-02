@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * The Class SynchronizedList.
  */
-public class SynchronizedList {
+class SynchronizedList {
 
     /** The main synchronized list. */
     private List<String> mainSynchronizedList = Collections
@@ -20,7 +20,7 @@ public class SynchronizedList {
      *            the md5 hash
      * @return true, if successful
      */
-    public synchronized boolean hasBeenProcessed(final String md5Hash) {
+    synchronized boolean hasBeenProcessed(final String md5Hash) {
         if (!mainSynchronizedList.contains(md5Hash)) {
             mainSynchronizedList.add(md5Hash);
             return false;

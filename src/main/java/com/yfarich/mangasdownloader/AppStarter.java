@@ -4,7 +4,7 @@ import com.google.common.base.Preconditions;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
-import com.yfarich.mangasdownloader.functions.impl.downloadfunction.DownloadFunction;
+import com.yfarich.mangasdownloader.functions.WorkerFunction;
 import com.yfarich.mangasdownloader.shared.ApplicationConfiguration;
 import com.yfarich.mangasdownloader.shared.RunningParameters;
 import com.yfarich.mangasdownloader.thread.WorkersPoll;
@@ -20,13 +20,16 @@ public class AppStarter {
     private static final Logger LOGGER = LogManager.getLogger(AppStarter.class.getName());
 
     @Inject
-    RunningParameters runningParameters;
+    private RunningParameters runningParameters;
 
     @Inject
-    ApplicationConfiguration applicationConfiguration;
+    private ApplicationConfiguration applicationConfiguration;
 
     @Inject
-    Injector injector;
+    private Injector injector;
+
+    @Inject
+    private Class<? extends WorkerFunction> workerFunction;
 
     public static void main(final String[] args) {
 
@@ -46,7 +49,7 @@ public class AppStarter {
             injector.getInstance(WorkersPoll.class)
                     .withNumberOfThreads(getNumberOfThreads())
                     .withDataToProcess(urlsList)
-                    .withFunctionToApply(DownloadFunction.class)
+                    .withFunctionToApply(workerFunction)
                     .work();
 
         } catch (Exception e) {

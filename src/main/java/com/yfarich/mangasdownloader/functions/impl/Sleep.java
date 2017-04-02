@@ -6,7 +6,7 @@ import com.yfarich.mangasdownloader.url.MangaPage;
 /**
  * Created by FARICH on 25/03/2017.
  */
-public class SleepFunction implements WorkerFunction {
+public class Sleep implements WorkerFunction {
     @Override
     public void apply(MangaPage data) {
 

@@ -25,7 +25,7 @@ import java.util.List;
 import static com.yfarich.mangasdownloader.functions.impl.downloadfunction.Constants.*;
 import static com.yfarich.mangasdownloader.shared.Constants.*;
 
-public class DownloadManager {
+class DownloadManager {
 
     @Inject
     private RunningParameters runningParameters;
@@ -34,7 +34,7 @@ public class DownloadManager {
 
     private static final Logger LOGGER = LogManager.getLogger(DownloadManager.class.getName());
 
-    public boolean download(final MangaPage mangaPage) {
+    boolean download(final MangaPage mangaPage) {
         Preconditions.checkNotNull(mangaPage);
         LOGGER.debug(new StringBuilder("Star getting from url :").append(mangaPage));
 
@@ -138,7 +138,7 @@ public class DownloadManager {
     }
 
 
-    public boolean downloadFile(String url, File outputFileName) {
+    private boolean downloadFile(String url, File outputFileName) {
         try (FileOutputStream downloadedFileOS = new FileOutputStream(outputFileName)) {
             URL downloadURL = new URL(url);
             URLConnection downloadUrlConnexion = downloadURL.openConnection();
@@ -156,11 +156,11 @@ public class DownloadManager {
 
     }
 
-    public String MD5(final String md5) {
+    private String MD5(final String md5) {
         try {
             java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
             byte[] array = md.digest(md5.getBytes());
-            StringBuffer sb = new StringBuffer();
+            StringBuilder sb = new StringBuilder();
             for (int i = 0; i < array.length; ++i) {
                 sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1, 3));
             }
