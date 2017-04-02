@@ -2,6 +2,7 @@ package com.yfarich.mangasdownloader;
 
 import com.yfarich.mangasdownloader.functions.WorkerFunction;
 import com.yfarich.mangasdownloader.functions.impl.Sleep;
+import com.yfarich.mangasdownloader.functions.impl.cloudflaredownload.CloudFlareDownload;
 import com.yfarich.mangasdownloader.functions.impl.downloadfunction.DownloadFunction;
 import com.yfarich.mangasdownloader.shared.ApplicationConfiguration;
 import com.yfarich.mangasdownloader.shared.RunningParameters;
@@ -52,7 +53,7 @@ public class AppModule extends AbstractModule {
 
     @Provides
     private Class<? extends WorkerFunction> workerFunction() {
-        return DownloadFunction.class;
+        return CloudFlareDownload.class;
 
       /*  try {
             return (Class<? extends WorkerFunction>) Class.forName("com.yfarich.mangasdownloader.functions.impl.downloadfunction.DownloadFunction");
