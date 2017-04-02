@@ -1,4 +1,4 @@
-package com.yfarich.mangasdownloader.functions.impl;
+package com.yfarich.mangasdownloader.functions;
 
 import com.yfarich.mangasdownloader.functions.WorkerFunction;
 import com.yfarich.mangasdownloader.url.MangaPage;

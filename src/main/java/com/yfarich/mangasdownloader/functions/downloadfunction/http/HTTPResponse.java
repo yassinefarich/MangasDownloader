@@ -1,4 +1,4 @@
-package com.yfarich.mangasdownloader.functions.impl.cloudflaredownload.http;
+package com.yfarich.mangasdownloader.functions.downloadfunction.http;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

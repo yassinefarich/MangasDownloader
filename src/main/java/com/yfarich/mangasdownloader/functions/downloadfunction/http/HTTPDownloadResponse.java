@@ -1,4 +1,4 @@
-package com.yfarich.mangasdownloader.functions.impl.cloudflaredownload.http;
+package com.yfarich.mangasdownloader.functions.downloadfunction.http;
 
 import java.io.InputStream;
 import java.net.URL;

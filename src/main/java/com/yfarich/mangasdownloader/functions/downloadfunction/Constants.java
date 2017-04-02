@@ -1,4 +1,4 @@
-package com.yfarich.mangasdownloader.functions.impl.downloadfunction;
+package com.yfarich.mangasdownloader.functions.downloadfunction;
 
 /**
  * Created by FARICH on 26/03/2017.

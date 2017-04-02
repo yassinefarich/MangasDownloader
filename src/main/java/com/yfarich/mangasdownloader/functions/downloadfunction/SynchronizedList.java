@@ -1,4 +1,4 @@
-package com.yfarich.mangasdownloader.functions.impl.downloadfunction;
+package com.yfarich.mangasdownloader.functions.downloadfunction;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * The Class SynchronizedList.
  */
-class SynchronizedList {
+public class SynchronizedList {
 
     /** The main synchronized list. */
     private List<String> mainSynchronizedList = Collections

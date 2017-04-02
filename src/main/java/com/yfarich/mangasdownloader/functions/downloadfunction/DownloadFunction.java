@@ -1,4 +1,4 @@
-package com.yfarich.mangasdownloader.functions.impl.downloadfunction;
+package com.yfarich.mangasdownloader.functions.downloadfunction;
 
 import com.yfarich.mangasdownloader.functions.WorkerFunction;
 import com.google.inject.Inject;

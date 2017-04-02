@@ -26,19 +26,16 @@ public class AppStarter {
     private ApplicationConfiguration applicationConfiguration;
 
     @Inject
-    private Injector injector;
+    private Injector objectsMaker;
 
     @Inject
     private Class<? extends WorkerFunction> workerFunction;
 
     public static void main(final String[] args) {
-
         Preconditions.checkArgument(args.length > 0, "You need to specify a Running parameters File ");
         Injector injector = Guice.createInjector(new AppModule().withRunningParametersFile(args[0]));
         AppStarter application = injector.getInstance(AppStarter.class);
         application.startProcessing();
-
-        //  new AppStarter().startProcessing();
     }
 
     public void startProcessing() {
@@ -46,7 +43,7 @@ public class AppStarter {
         try {
             List<MangaPage> urlsList = new URLsGenerator().generateUrlsFromExpression(getDownloadUrl());
 
-            injector.getInstance(WorkersPoll.class)
+            objectsMaker.getInstance(WorkersPoll.class)
                     .withNumberOfThreads(getNumberOfThreads())
                     .withDataToProcess(urlsList)
                     .withFunctionToApply(workerFunction)

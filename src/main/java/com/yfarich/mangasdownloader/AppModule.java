@@ -1,16 +1,17 @@
 package com.yfarich.mangasdownloader;
 
-import com.yfarich.mangasdownloader.functions.WorkerFunction;
-import com.yfarich.mangasdownloader.functions.impl.Sleep;
-import com.yfarich.mangasdownloader.functions.impl.cloudflaredownload.CloudFlareDownload;
-import com.yfarich.mangasdownloader.functions.impl.downloadfunction.DownloadFunction;
-import com.yfarich.mangasdownloader.shared.ApplicationConfiguration;
-import com.yfarich.mangasdownloader.shared.RunningParameters;
-import com.yfarich.mangasdownloader.shared.ConfigurationImplementation;
 import com.google.common.base.Strings;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
+import com.yfarich.mangasdownloader.functions.WorkerFunction;
+import com.yfarich.mangasdownloader.functions.downloadfunction.CloudFlareDownload;
+import com.yfarich.mangasdownloader.functions.downloadfunction.DownloadFunction;
+import com.yfarich.mangasdownloader.functions.downloadfunction.DownloadStrategy;
+import com.yfarich.mangasdownloader.functions.downloadfunction.SynchronizedList;
+import com.yfarich.mangasdownloader.shared.ApplicationConfiguration;
+import com.yfarich.mangasdownloader.shared.ConfigurationImplementation;
+import com.yfarich.mangasdownloader.shared.RunningParameters;
 
 import java.io.File;
 
@@ -35,7 +36,8 @@ public class AppModule extends AbstractModule {
 
     @Override
     protected void configure() {
-//        bind(AppStarter.class).to(AppStarter.class);
+        bind(SynchronizedList.class).in(Singleton.class);
+        bind(DownloadStrategy.class).to(CloudFlareDownload.class);
     }
 
     @Provides
@@ -53,10 +55,10 @@ public class AppModule extends AbstractModule {
 
     @Provides
     private Class<? extends WorkerFunction> workerFunction() {
-        return CloudFlareDownload.class;
+        return DownloadFunction.class;
 
       /*  try {
-            return (Class<? extends WorkerFunction>) Class.forName("com.yfarich.mangasdownloader.functions.impl.downloadfunction.DownloadFunction");
+            return (Class<? extends WorkerFunction>) Class.forName("DownloadFunction");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
