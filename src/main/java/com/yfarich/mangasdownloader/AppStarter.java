@@ -5,7 +5,6 @@ import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.yfarich.mangasdownloader.functions.WorkerFunction;
-import com.yfarich.mangasdownloader.shared.ApplicationConfiguration;
 import com.yfarich.mangasdownloader.shared.RunningParameters;
 import com.yfarich.mangasdownloader.thread.WorkersPoll;
 import com.yfarich.mangasdownloader.url.MangaPage;
@@ -21,9 +20,6 @@ public class AppStarter {
 
     @Inject
     private RunningParameters runningParameters;
-
-    @Inject
-    private ApplicationConfiguration applicationConfiguration;
 
     @Inject
     private Injector objectsMaker;
@@ -57,7 +53,7 @@ public class AppStarter {
     }
 
     private String getNumberOfThreads() {
-        return applicationConfiguration.getProperty(ApplicationConfiguration.NUMBER_OF_THREADS).get();
+        return runningParameters.getProperty(RunningParameters.NUMBER_OF_THREADS).get();
     }
 
     private String getDownloadUrl() {

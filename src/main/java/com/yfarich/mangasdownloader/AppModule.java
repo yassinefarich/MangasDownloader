@@ -1,6 +1,5 @@
 package com.yfarich.mangasdownloader;
 
-import com.google.common.base.Strings;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
@@ -9,7 +8,6 @@ import com.yfarich.mangasdownloader.functions.downloadfunction.CloudFlareDownloa
 import com.yfarich.mangasdownloader.functions.downloadfunction.DownloadFunction;
 import com.yfarich.mangasdownloader.functions.downloadfunction.DownloadStrategy;
 import com.yfarich.mangasdownloader.functions.downloadfunction.SynchronizedList;
-import com.yfarich.mangasdownloader.shared.ApplicationConfiguration;
 import com.yfarich.mangasdownloader.shared.ConfigurationImplementation;
 import com.yfarich.mangasdownloader.shared.RunningParameters;
 
@@ -44,13 +42,6 @@ public class AppModule extends AbstractModule {
     @Singleton
     private RunningParameters applicationProperties() {
         return new ConfigurationImplementation(new File(propertiesFileName));
-    }
-
-    @Provides
-    @Singleton
-    private ApplicationConfiguration applicationConfiguration() {
-        return new ConfigurationImplementation(new File(Strings.isNullOrEmpty(configurationFileName) ?
-                ApplicationConfiguration.DEFAULT_CONFIG_FILE : configurationFileName));
     }
 
     @Provides

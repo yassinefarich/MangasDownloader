@@ -21,7 +21,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import static com.yfarich.mangasdownloader.functions.downloadfunction.Constants.DEFAULT_USER_AGENT;
-import static com.yfarich.mangasdownloader.shared.Constants.PARSER_XPATH;
+import static com.yfarich.mangasdownloader.shared.RunningParameters.PARSER_XPATH;
 
 /**
  * Created by FARICH on 02/04/2017.

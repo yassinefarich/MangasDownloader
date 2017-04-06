@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.yfarich.mangasdownloader.shared.Constants.PARSER_XPATH;
+import static com.yfarich.mangasdownloader.shared.RunningParameters.PARSER_XPATH;
 
 /**
  * Created by FARICH on 02/04/2017.

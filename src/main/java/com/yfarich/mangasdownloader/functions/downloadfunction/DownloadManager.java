@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static com.yfarich.mangasdownloader.functions.downloadfunction.Constants.*;
+import static com.yfarich.mangasdownloader.shared.RunningParameters.*;
 import static com.yfarich.mangasdownloader.shared.Constants.*;
 
 class DownloadManager {

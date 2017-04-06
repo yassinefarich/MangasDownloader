@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 import java.io.*;
 import java.util.Properties;
 
-public class ConfigurationImplementation implements ApplicationConfiguration, RunningParameters {
+public class ConfigurationImplementation implements RunningParameters {
 
     private static final Logger LOGGER = LogManager.getLogger(ConfigurationImplementation.class.getName());
 
