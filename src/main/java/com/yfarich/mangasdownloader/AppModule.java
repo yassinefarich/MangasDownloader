@@ -1,14 +1,14 @@
 package com.yfarich.mangasdownloader;
 
+import com.google.common.base.Optional;
+import com.google.common.base.Preconditions;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.yfarich.mangasdownloader.functions.WorkerFunction;
-import com.yfarich.mangasdownloader.functions.downloadfunction.CloudFlareDownload;
-import com.yfarich.mangasdownloader.functions.downloadfunction.DownloadFunction;
-import com.yfarich.mangasdownloader.functions.downloadfunction.DownloadStrategy;
-import com.yfarich.mangasdownloader.functions.downloadfunction.SynchronizedList;
+import com.yfarich.mangasdownloader.functions.downloadfunction.*;
 import com.yfarich.mangasdownloader.shared.ConfigurationImplementation;
+import com.yfarich.mangasdownloader.shared.Constants;
 import com.yfarich.mangasdownloader.shared.RunningParameters;
 
 import java.io.File;
@@ -20,11 +20,22 @@ public class AppModule extends AbstractModule {
 
     private String propertiesFileName;
     private String configurationFileName;
-
+    private RunningParameters runningParameters;
 
     public AppModule withRunningParametersFile(String propertiesFile) {
+        Preconditions.checkNotNull(propertiesFile);
         propertiesFileName = propertiesFile;
+
+        File propertyFile = new File(propertiesFile);
+        Preconditions.checkState(propertyFile.exists());
+
+        initPropertyFile(propertyFile);
         return this;
+    }
+
+    private void initPropertyFile(File propertiesFileName)
+    {
+        runningParameters = new ConfigurationImplementation(propertiesFileName);
     }
 
     public AppModule withApplicationConfigurationFile(String configFileName) {
@@ -35,7 +46,14 @@ public class AppModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(SynchronizedList.class).in(Singleton.class);
-        bind(DownloadStrategy.class).to(CloudFlareDownload.class);
+        bind(DownloadStrategy.class).to(retrieveDownloadStrategy());
+    }
+
+    private Class<? extends DownloadStrategy> retrieveDownloadStrategy() {
+        Optional<String> downloadStrategy = runningParameters.getProperty(Constants.DOWNLOAD_STRATEGY);
+        return !downloadStrategy.isPresent() || !Constants.CLOUD_FLARE_STRATEGY.equalsIgnoreCase(downloadStrategy.get()) ?
+                SimpleDownload.class : CloudFlareDownload.class ;
+
     }
 
     @Provides
