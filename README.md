@@ -28,14 +28,16 @@ Simple command line java batch to download Mangas from various websites .
 
 ### Configuration file template :
 
-    [DownloadWebsiteInformation]
-    DOWNLOAD_URL = http://www.japscan.com/lecture-en-ligne/nanatsu-no-taizai/[210:212|1]/[1:30|1].html
-    DOWNLOAD_URL_MODIF = [DOWNLOAD_URL]
-    DOWNLOAD_PATH = /home/user/MyMangas
+        [DownloadInformation]
+        DOWNLOAD_URL = http://www.mangapanda.com/hayate-the-combat-butler/[1:20|1]/[1:40|1]
+        DOWNLOAD_URL_MODIF = [DOWNLOAD_URL]
+        DOWNLOAD_PATH = /home/user/Mangas
 
-    [ParserInformations]
-    USE_SCRAPPING = TRUE
-    PARSER_XPATH = //img[@id="image"]/@src
+        [ParserInformations]
+        USE_SCRAPPING = TRUE
+        PARSER_XPATH = //img[@id="img"]/@src
+        # "CLOUD_FLARE_STRATEGY" for websites who use CloudFlare
+        DOWNLOAD_STRATEGY = SIMPLE_STRATEGY
 
-    [MultiProcessingProperties]
-    NUMBER_OF_THREADS = 30
+        [MultiProcessingProperties]
+        NUMBER_OF_THREADS = 30
