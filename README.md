@@ -36,7 +36,7 @@ Simple command line java batch to download Mangas from various websites .
         [ParserInformations]
         USE_SCRAPPING = TRUE
         PARSER_XPATH = //img[@id="img"]/@src
-        # "CLOUD_FLARE_STRATEGY" for websites who use CloudFlare
+        # "CLOUD_FLARE_STRATEGY" for websites that use CloudFlare
         DOWNLOAD_STRATEGY = SIMPLE_STRATEGY
 
         [MultiProcessingProperties]
