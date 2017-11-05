@@ -1,17 +1,6 @@
-package com.yfarich.mangasdownloader.functions.downloadfunction;
+package com.yfarich.mangasdownloader.download.downloadstrategy;
 
-import com.google.common.base.Optional;
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
-import com.google.inject.Inject;
-import com.yfarich.mangasdownloader.shared.RunningParameters;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-import org.htmlcleaner.HtmlCleaner;
-import org.htmlcleaner.TagNode;
-import org.htmlcleaner.XPatherException;
+import static com.yfarich.mangasdownloader.shared.ApplicationParameters.PARSER_XPATH;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,18 +9,30 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-import static com.yfarich.mangasdownloader.functions.downloadfunction.Constants.DEFAULT_USER_AGENT;
-import static com.yfarich.mangasdownloader.shared.RunningParameters.PARSER_XPATH;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.htmlcleaner.HtmlCleaner;
+import org.htmlcleaner.TagNode;
+import org.htmlcleaner.XPatherException;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.google.common.base.Optional;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
+import com.yfarich.mangasdownloader.download.DownloadManagerStrategy;
+import com.yfarich.mangasdownloader.shared.ApplicationParameters;
 
 /**
  * Created by FARICH on 02/04/2017.
  */
-public class SimpleDownload implements DownloadStrategy {
+public class SimpleDownload implements DownloadManagerStrategy {
 
     private static final Logger LOGGER = LogManager.getLogger(SimpleDownload.class);
 
-    @Inject
-    private RunningParameters runningParameters;
+    @Autowired
+    private ApplicationParameters runningParameters;
 
     @Override
     public Boolean downloadFile(String url, File outputFileName) {

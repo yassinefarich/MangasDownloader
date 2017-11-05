@@ -12,8 +12,6 @@ public class Constants {
     public static final int STRING_LEFT_PAD = 2;
     public static final String CONFIGURAION_FILE = "config.properties";
     public static final String DEFAULT_ENCODING = "UTF-8";
-    public static final String DOWNLOAD_STRATEGY = "DOWNLOAD_STRATEGY";
-    public static final String CLOUD_FLARE_STRATEGY = "CLOUD_FLARE_STRATEGY";
 
     private Constants() {
     }

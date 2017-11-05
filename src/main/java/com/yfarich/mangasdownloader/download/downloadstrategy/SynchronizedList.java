@@ -1,12 +1,15 @@
-package com.yfarich.mangasdownloader.functions.downloadfunction;
+package com.yfarich.mangasdownloader.download.downloadstrategy;
 
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 /**
  * The Class SynchronizedList.
  */
+@Component
 public class SynchronizedList {
 
     /** The main synchronized list. */
@@ -20,7 +23,7 @@ public class SynchronizedList {
      *            the md5 hash
      * @return true, if successful
      */
-    synchronized boolean hasBeenProcessed(final String md5Hash) {
+    public synchronized boolean hasBeenProcessed(final String md5Hash) {
         if (!mainSynchronizedList.contains(md5Hash)) {
             mainSynchronizedList.add(md5Hash);
             return false;

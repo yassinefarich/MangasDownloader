@@ -1,63 +1,54 @@
 package com.yfarich.mangasdownloader;
 
-import com.google.common.base.Preconditions;
-import com.google.inject.Guice;
-import com.google.inject.Inject;
-import com.google.inject.Injector;
-import com.yfarich.mangasdownloader.functions.WorkerFunction;
-import com.yfarich.mangasdownloader.shared.RunningParameters;
+import java.util.List;
+import java.util.function.Consumer;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
+
+import com.yfarich.mangasdownloader.shared.ApplicationParameters;
 import com.yfarich.mangasdownloader.thread.WorkersPoll;
 import com.yfarich.mangasdownloader.url.MangaPage;
 import com.yfarich.mangasdownloader.url.generator.URLsGenerator;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 
-import java.util.List;
-
+@Component
 public class AppStarter {
 
-    private static final Logger LOGGER = LogManager.getLogger(AppStarter.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(AppStarter.class.getName());
 
-    @Inject
-    private RunningParameters runningParameters;
+	@Autowired
+	private ApplicationParameters applicationParameters;
 
-    @Inject
-    private Injector objectsMaker;
+	@Autowired
+	private Class<? extends Consumer<MangaPage>> workerFunction;
 
-    @Inject
-    private Class<? extends WorkerFunction> workerFunction;
+	@Autowired
+	private ApplicationContext appContext;
 
-    public static void main(final String[] args) {
-        Preconditions.checkArgument(args.length > 0, "You need to specify a Running parameters File ");
-        Injector injector = Guice.createInjector(new AppModule().withRunningParametersFile(args[0]));
-        AppStarter application = injector.getInstance(AppStarter.class);
-        application.startProcessing();
-    }
+	public void startProcessing() {
 
-    public void startProcessing() {
+		try {
+			List<MangaPage> urlsList = new URLsGenerator().generateUrlsFromExpression(getDownloadUrl());
 
-        try {
-            List<MangaPage> urlsList = new URLsGenerator().generateUrlsFromExpression(getDownloadUrl());
+			appContext.getBean(WorkersPoll.class).withNumberOfThreads(getNumberOfThreads()).withDataToProcess(urlsList)
+					.withFunctionToApply(workerFunction).work();
 
-            objectsMaker.getInstance(WorkersPoll.class)
-                    .withNumberOfThreads(getNumberOfThreads())
-                    .withDataToProcess(urlsList)
-                    .withFunctionToApply(workerFunction)
-                    .work();
+		} catch (Exception e) {
+			LOGGER.error("Exception " + e.getMessage());
+			e.printStackTrace();
+		}
 
-        } catch (Exception e) {
-            LOGGER.error("Exception " + e.getMessage());
-            e.printStackTrace();
-        }
+	}
 
-    }
+	private String getNumberOfThreads() {
+		return applicationParameters.getProperty(ApplicationParameters.NUMBER_OF_THREADS).get();
+	}
 
-    private String getNumberOfThreads() {
-        return runningParameters.getProperty(RunningParameters.NUMBER_OF_THREADS).get();
-    }
-
-    private String getDownloadUrl() {
-        return runningParameters.getProperty(RunningParameters.DOWNLOAD_URL).get();
-    }
+	private String getDownloadUrl() {
+		return applicationParameters.getProperty(ApplicationParameters.DOWNLOAD_URL).get();
+	}
 
 }
